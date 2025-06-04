@@ -12,7 +12,7 @@ class Doctor(models.Model):
     is_on_vacation = models.BooleanField(default=False)
     
     def __str__(self):
-        return f'Doctor: {self.first_name} {self.last_name}'
+        return f'Dr. {self.first_name} {self.last_name}'
     
     
 class Department(models.Model):
