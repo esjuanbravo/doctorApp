@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Doctor(models.Model):
@@ -6,6 +7,7 @@ class Doctor(models.Model):
     last_name = models.CharField()
     specialization = models.CharField(max_length=100)
     contant_number = models.TextField()
+    start_of_career = models.DateField(default=timezone.now)
     address = models.TextField()
     email = models.EmailField()
     biography = models.TextField()

@@ -1,10 +1,12 @@
 from rest_framework import serializers
+from datetime import date
 from .models import Doctor, Department, DoctorAvailability, MedicalNote
 from bookings.serializers import AppointmentSerializers
 
 class DoctorSerializers(serializers.ModelSerializer):
     departments = serializers.StringRelatedField(many=True)
     appointments = AppointmentSerializers(many=True, read_only=True)
+    time_of_experience = serializers.SerializerMethodField()
     class Meta: 
         model = Doctor
         fields = ['id','first_name','last_name','specialization','departments','contant_number','address','email','biography','is_on_vacation','appointments']
@@ -22,6 +24,9 @@ class DoctorSerializers(serializers.ModelSerializer):
             if attrs['is_on_vacation'] and attrs['contact_number'] < 10:
                 raise serializers.ValidationError("Si el doctor esta de vacaciones, debe tener un numero de contacto valido")
             return super().validate(attrs)
+        
+        def get_time_of_experience(self, obj):
+            return (date.today() - obj.start_of_career).days // 365
 
 class DepartmentSerializers(serializers.ModelSerializer):
     class Meta: 
