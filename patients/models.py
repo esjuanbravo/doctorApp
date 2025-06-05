@@ -7,6 +7,7 @@ class Patient(models.Model):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, unique=True)
     date_of_birth = models.DateField()
+    medical_history = models.TextField(default="Sin historial médico registrado",)
     address  = models.TextField( null=True, blank=True)
 
     def __str__(self):

@@ -12,6 +12,7 @@ class DoctorViewSet(viewsets.ModelViewSet):
     """
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializers
+    # con esto solo se puede tener acceso si esta login y ser doctor
     permission_classes = [IsAuthenticatedOrReadOnly, IsDoctor]    
     @action(['POST'], detail=True, url_path='set-on-vacation')
     def set_on_vacation(self, request, pk):
