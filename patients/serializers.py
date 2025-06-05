@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from datetime import date
 from .models import Patient, Insurance, MedicalRecord
-from bookings.serializers import AppointmentSerializers
+from bookings.serializers import AppointmentSerializer
 
 class PatientSerializers(serializers.ModelSerializer):
     # instanciamos la clase serializadora 
-    appointments = AppointmentSerializers(many=True, read_only=True) # es many hace que tomo en cuenta a todos los objetos
+    appointments = AppointmentSerializer(many=True, read_only=True) # es many hace que tomo en cuenta a todos los objetos
     age = serializers.SerializerMethodField()    
     class Meta:
         model = Patient

@@ -4,7 +4,7 @@
 from rest_framework import serializers
 from .models import Appointment, MedicalNote
 
-class AppointmentSerializers(serializers.ModelSerializer):
+class AppointmentSerializer(serializers.ModelSerializer):
     patient = serializers.StringRelatedField()
     doctor = serializers.StringRelatedField()
     class Meta:
